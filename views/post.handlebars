@@ -1,0 +1,62 @@
+<header>
+  <nav>
+    <a href="/dashboard">dashboard</a>
+    <a href="/">homepage</a>
+    {{#if logged_in}}
+    <a href="/posts/{{id}}" class="logout">logout</a>
+    {{else}}
+    <a href="/login">login</a>
+    {{/if}}
+  </nav>
+</header>
+{{#if isPersonalPost}}
+<form class="form post-form" id="edit-post">
+    <div class="form-group text-center">
+        <label for="post-title">post title</label>
+        <input class="form-input" placeholder="enter replacment title here" type="text" id="edit-post-title" />
+    </div>
+    <div class="form-group text-center">
+        <label for="post-text">post text</label>
+        <input class="form-input" placeholder="enter replacment text here" type="text" id="edit-post-text" />
+    </div>
+    <div class="form-group text-center">
+        <button class="btn btn-primary" type="submit">Edit Post</button>
+      </div>
+</form>
+<div class="text-center">
+<button class="btn btn-primary" type="click" id="delete-post">Delete Post</button>
+</div>
+{{/if}}
+<div class="text-center" id="single-post" data-postId="{{id}}">
+ <h2>{{title}}</h2>
+   <h4>{{post_text}}</h4>
+   <h5>Created by {{user.username}} on {{format_date createdAt}}</h5>
+   <br>
+   <h2>Comments</h2>
+   {{#each comments as |comment| }}
+   <div>
+    <h3>{{comment.user.username}}</h3>
+    <p>{{comment.comment_text}}</p>
+    <p>created on {{format_date createdAt}}</p>
+   </div>
+   {{/each}}
+
+   {{#if logged_in}}
+   <form id="signup" class="form comment-form">
+      <div class="form-group">
+        <label for="name-signup"></label>
+        <input class="form-input" placeholder="leave a comment here" type="text" id="comment-input" />
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">submit comment</button>
+      </div>
+    </form>
+    {{else}}
+    <h4>sign in to leave a comment</h4>
+    {{/if}}
+    
+</div>
+{{#if logged_in}}
+<script src="../js/logout.js"></script>
+<script src="../js/Comment.js"></script>
+<script src="../js/Post.js"></script>
+{{/if}}

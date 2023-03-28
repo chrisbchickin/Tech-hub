@@ -1,0 +1,41 @@
+<h2>Dashboard</h2>
+<br>
+<header>
+    <nav>
+        <a href="/dashboard">dashboard</a>
+        <a href="/">homepage</a>
+        {{#if logged_in}}
+        <a href="/" class="logout">logout</a>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+    </nav>
+</header>
+<br>
+<h3>Create Post</h3>
+<form class="form post-form">
+    <div class="form-group">
+        <label for="post-title">post title</label>
+        <input class="form-input" type="text" id="post-title" />
+    </div>
+    <div class="form-group">
+        <label for="post-text">post text</label>
+        <input class="form-input" type="text" id="post-text" />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Create</button>
+      </div>
+</form>
+
+{{#each myPosts as |post| }}
+<div>
+    <div>
+        <h2>
+            <a href="/posts/{{post.id}}">{{post.title}}</a>
+        </h2>
+        <p>Created by {{post.user.username}} on {{format_date post.createdAt}}</p>
+    </div>
+</div>
+{{/each}}
+
+<script src="../js/Post.js"></script>
