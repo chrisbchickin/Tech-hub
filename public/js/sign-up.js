@@ -17,7 +17,7 @@ const signupFormHandler = async (event) => {
         document.location.replace('/');
       } else {
         alert(response.statusText);
-        console.log(`username: ${username} email: ${email} password: ${password}}`);
+        console.log(response);
       }
     }
   };
