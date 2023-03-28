@@ -1,3 +1,4 @@
+// add comment even handler
 const commentFormHandler = async (event) => {
     event.preventDefault();
     const comment_text = document

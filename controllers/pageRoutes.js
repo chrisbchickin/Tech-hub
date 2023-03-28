@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../models')
 const withAuth = require('../utils/auth');
-
+// renders homepage view
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
         res.status(500).json(error);
     }
 });
-
+// loads post view (single post)
 router.get('/posts/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
@@ -58,7 +58,7 @@ router.get('/posts/:id', async (req, res) => {
         console.error(error);
     }
 })
-
+// loads login view
 router.get('/login', async (req, res) => {
     try {
         res.render('login', { logged_in: req.session.logged_in });
@@ -67,7 +67,7 @@ router.get('/login', async (req, res) => {
         console.log(err);
     }
 });
-
+// loads dashboard view
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userPosts = await Post.findAll({

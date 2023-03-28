@@ -1,3 +1,4 @@
+// create post event handler
 const createPostFormHandler = async (event) => {
     event.preventDefault();
     const title = document
@@ -25,7 +26,7 @@ const createPostFormHandler = async (event) => {
         }
     }
 }
-
+// update post event handler
 const updatePostHandler = async (event) => {
     event.preventDefault();
     const title = document
@@ -57,7 +58,7 @@ const updatePostHandler = async (event) => {
         }
     }
 }
-
+//delet post event handler
 const delButtonHandler = async (event) => {
     event.preventDefault();
     console.log('hello');

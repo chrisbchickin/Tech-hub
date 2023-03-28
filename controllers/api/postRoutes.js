@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Post, Comment } = require('../../models');
-
+// get all posts
 router.get('/', async (req, res) => {
   try {
     const allPosts = await Post.findAll({ 
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     console.log(error);
   }
 })
-
+// get one post
 router.put('/:post_id', async (req, res) => {
   try {
     const updatedPost = await Post.update(
@@ -36,7 +36,7 @@ router.put('/:post_id', async (req, res) => {
     console.log(error); 
   }
 });
-
+// create post
 router.post('/', async (req, res) => {
   try {
     const newPost = await Post.create({
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
     console.log(err);
   }
 });
-
+// delete post
 router.delete('/:id', async (req, res) => {
   try {
     const PostData = await Post.destroy({

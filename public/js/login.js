@@ -1,3 +1,4 @@
+//login event handler
 const loginFormHandler = async (event) => {
   event.preventDefault();
 console.log('test login form handler')

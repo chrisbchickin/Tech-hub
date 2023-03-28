@@ -1,3 +1,4 @@
+//signup event handler
 const signupFormHandler = async (event) => {
     event.preventDefault();
     console.log('test signup form handler');

@@ -1,3 +1,4 @@
+//logout event handler
 const logout = async () => {
   console.log('logout listener');
   const response = await fetch('/api/users/logout', {
