@@ -16,7 +16,6 @@ console.log('test login form handler')
       document.location.replace('/');
       alert('login successful');
     } else {
-      alert('Failed to log in');
       console.log(response);
     }
   }
