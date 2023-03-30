@@ -1,10 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-// checks if user entered the correct password according to DB
-const checkPassword = (userPass, reqPass) => {
-  const boolean = userPass === reqPass;
-  return boolean;
-}
+
 // get all users
 router.get('/', async (req, res) => {
     try {
@@ -62,7 +58,7 @@ router.post('/login', async (req, res) => {
     res.status(400).json(err);
     console.log(err);
   }
-});
+});  
 // logout route for user
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
