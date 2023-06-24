@@ -22,7 +22,13 @@ router.post('/', async (req, res) => {
       res.status(200).json(userData);
     });
   } catch (err) {
-    res.status(500).json(err);
+    if (err.name === 'SequelizeUniqueConstraintError' && err.fields.username) {
+      // Handle duplicate username error
+      res.status(400).json({ message: 'Username already taken. Please choose a different username.' });
+    } else {
+      // Handle other errors
+      res.status(500).json({ message: 'An error occurred while creating the user.' });
+    }
     console.log(err);
   }
 });
