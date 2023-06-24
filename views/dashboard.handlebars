@@ -1,41 +1,56 @@
-<h2>Dashboard</h2>
-<br>
-<header>
-    <nav>
-        <a href="/dashboard">dashboard</a>
-        <a href="/">homepage</a>
-        {{#if logged_in}}
-        <a href="/" id="logout">logout</a>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-    </nav>
-</header>
-<br>
-<h3>Create Post</h3>
-<form class="form post-form">
-    <div class="form-group">
-        <label for="post-title">post title</label>
-        <input class="form-input" type="text" id="post-title" />
-    </div>
-    <div class="form-group">
-        <label for="post-text">post text</label>
-        <input class="form-input" type="text" id="post-text" />
-    </div>
-    <div class="form-group">
-        <button class="btn btn-primary" type="submit">Create</button>
+<div class="content-container">
+  <h1 class="white-text">My Posts</h1>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    data-bs-whatever="@mdo">Create New Post</button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex">
+          <form class="post-form">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Enter Post Title:</label>
+              <input type="text" class="form-control" id="post-title">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Enter Post Body</label>
+              <textarea class="form-control" id="post-body-input"></textarea>
+            </div>
+          <button type="submit" class="btn btn-primary create-post-button">Create Post</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
       </div>
-</form>
-
-{{#each myPosts as |post| }}
-<div>
-    <div>
-        <h2>
-            <a href="/posts/{{post.id}}">{{post.title}}</a>
-        </h2>
-        <p>Created by {{post.user.username}} on {{format_date post.createdAt}}</p>
     </div>
+  </div>
+  {{#each myPosts as |post| }}
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{post.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Created by {{post.user.username}} on {{format_date
+        post.createdAt}}</h6>
+      <a class="btn btn-primary" href="/posts/{{post.id}}">View Post</a>
+    </div>
+  </div>
+  {{/each}}
+  {{!-- <form class="form post-form">
+    <div class="form-group">
+      <label for="post-title">post title</label>
+      <input class="form-input" type="text" id="post-title" />
+    </div>
+    <div class="form-group">
+      <label for="post-text">post text</label>
+      <input class="form-input" type="text" id="post-text" />
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Create</button>
+    </div>
+  </form> --}}
 </div>
-{{/each}}
 
 <script src="../js/Post.js"></script>

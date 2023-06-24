@@ -15,7 +15,8 @@ router.get('/', async (req, res) => {
         const posts = postData.map((post) => post.get({ plain: true }));
         res.render('homepage', {
             posts,
-            logged_in: req.session.logged_in
+            logged_in: req.session.logged_in,
+            homepage: true,
         });
     } catch (error) {
         res.status(500).json(error);
@@ -46,12 +47,11 @@ router.get('/posts/:id', async (req, res) => {
         const post = postData.get({ plain: true });
 
         const isPersonalPost = req.session.user_id === postData.user_id;
-        //res.json({ ...post, logged_in: req.session.logged_in })
         res.render('post', {
             ...post,
             logged_in: req.session.logged_in,
             sessUser_id: req.session.user_id,
-            isPersonalPost: isPersonalPost
+            isPersonalPost: isPersonalPost,
         });
     } catch (error) {
         res.status(500).json(error);
@@ -61,7 +61,10 @@ router.get('/posts/:id', async (req, res) => {
 // loads login view
 router.get('/login', async (req, res) => {
     try {
-        res.render('login', { logged_in: req.session.logged_in });
+        res.render('login', { 
+            logged_in: req.session.logged_in, 
+            login: true, 
+        });
     } catch (err) {
         res.status(500).json(err);
         console.log(err);
@@ -82,7 +85,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
             ]
         });
         const myPosts = userPosts.map((post) => post.get({ plain: true }));
-        res.render('dashboard', { myPosts, logged_in: req.session.logged_in });
+        res.render('dashboard', { myPosts, logged_in: req.session.logged_in, dashboard: true, });
         //res.status(200).json(myPosts);
     } catch (err) {
         res.status(500).json(err);

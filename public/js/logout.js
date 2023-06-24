@@ -13,7 +13,7 @@ const logout = async () => {
     alert(response.statusText);
   }
 };
-console.log('test logout.js')
+console.log('test logout.js');
 document
   .querySelector('#logout')
   .addEventListener('click', logout);

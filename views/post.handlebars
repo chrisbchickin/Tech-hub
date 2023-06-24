@@ -1,59 +1,73 @@
-<header>
-  <nav>
-    <a href="/dashboard">dashboard</a>
-    <a href="/">homepage</a>
-    {{#if logged_in}}
-    <a href="/posts/{{id}}" id="logout">logout</a>
-    {{else}}
-    <a href="/login">login</a>
-    {{/if}}
-  </nav>
-</header>
-{{#if isPersonalPost}}
-<form class="form post-form" id="edit-post">
-    <div class="form-group text-center">
-        <label for="post-title">post title</label>
-        <input class="form-input" placeholder="enter replacment title here" type="text" id="edit-post-title" />
-    </div>
-    <div class="form-group text-center">
-        <label for="post-text">post text</label>
-        <input class="form-input" placeholder="enter replacment text here" type="text" id="edit-post-text" />
-    </div>
-    <div class="form-group text-center">
-        <button class="btn btn-primary" type="submit">Edit Post</button>
+<div class="content-container">
+  {{#if isPersonalPost}}
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    data-bs-whatever="@mdo">Edit Post</button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Post</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex">
+          <form class="form post-form">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Enter Post Title:</label>
+              <input type="text" class="form-control" id="edit-post-title">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Enter Post Body</label>
+              <textarea class="form-control" id="edit-post-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="click" class="btn btn-primary" id="edit-post-button">Edit Post</button>
+          <button class="btn btn-primary" type="click" id="delete-post">Delete Post</button>
+        </div>
       </div>
-</form>
-<div class="text-center">
-<button class="btn btn-primary" type="click" id="delete-post">Delete Post</button>
-</div>
-{{/if}}
-<div class="text-center" id="single-post" data-postId="{{id}}">
- <h2>{{title}}</h2>
-   <h4>{{post_text}}</h4>
-   <h5>Created by {{user.username}} on {{format_date createdAt}}</h5>
-   <br>
-   <h2>Comments</h2>
-   {{#each comments as |comment| }}
-   <div>
-    <h3>{{comment.user.username}}</h3>
-    <p>{{comment.comment_text}}</p>
-    <p>created on {{format_date createdAt}}</p>
-   </div>
-   {{/each}}
-
-   {{#if logged_in}}
-   <form id="signup" class="form comment-form">
+    </div>
+  </div>
+  {{/if}}
+  <div class="card single-post">
+    <div class="card-header">
+      {{title}}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{post_text}}</p>
+        <footer class="blockquote-footer">Created by {{user.username}} on <cite title="Source Title">{{format_date
+            createdAt}}</cite></footer>
+      </blockquote>
+    </div>
+  </div>
+  <div class="text-center" id="single-post" data-postId="{{id}}">
+    <br>
+    {{#if logged_in}}
+    <form id="signup" class="form comment-form">
       <div class="form-group">
         <label for="name-signup"></label>
-        <input class="form-input" placeholder="leave a comment here" type="text" id="comment-input" />
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">submit comment</button>
-      </div>
+        <input type="text" class="form-control" id="comment-input" aria-label="Username"
+          aria-describedby="addon-wrapping">
+        <div class="form-group">
+          <button class="btn btn-primary mt-2" type="submit">submit comment</button>
+        </div>
     </form>
     {{else}}
     <h4>sign in to leave a comment</h4>
     {{/if}}
-    
+    <h2 class="white-text">Comments</h2>
+    {{#each comments as |comment| }}
+    <div class="comments-containter mb-3">
+      <h3>{{comment.user.username}}</h3>
+      <p>{{comment.comment_text}}</p>
+      <p>created on {{format_date createdAt}}</p>
+    </div>
+    {{/each}}
+
+  </div>
+  <div class="create-post-button"></div>
 </div>
 {{#if logged_in}}
 <script src="../js/logout.js"></script>

@@ -1,16 +1,17 @@
 // create post event handler
 const createPostFormHandler = async (event) => {
     event.preventDefault();
+    console.log('create post handler');
     const title = document
-    .querySelector('#post-title')
-    .value
-    .trim();
+        .querySelector('#post-title')
+        .value
+        .trim();
 
     const post_text = document
-    .querySelector('#post-text')
-    .value
-    .trim();
-        
+        .querySelector('#post-text')
+        .value
+        .trim();
+
     if (title && post_text) {
         const response = await fetch('/api/posts', {
             method: 'POST',
@@ -29,6 +30,7 @@ const createPostFormHandler = async (event) => {
 // update post event handler
 const updatePostHandler = async (event) => {
     event.preventDefault();
+    console.log('update post handler')
     const title = document
     .querySelector('#edit-post-title')
     .value
@@ -58,32 +60,34 @@ const updatePostHandler = async (event) => {
         }
     }
 }
-//delet post event handler
+//delete post event handler
 const delButtonHandler = async (event) => {
     event.preventDefault();
     console.log('hello');
     const post_id = document
-    .querySelector('#single-post')
-    .getAttribute('data-postId');
-      const response = await fetch(`/api/posts/${post_id}`, {
+        .querySelector('#single-post')
+        .getAttribute('data-postId');
+    const response = await fetch(`/api/posts/${post_id}`, {
         method: 'DELETE',
-      });
-  
-      if (response.ok) {
+    });
+
+    if (response.ok) {
         document.location.replace('/dashboard');
         alert('post deleted!')
-      } else {
+    } else {
         alert('Failed to delete post!');
-      }
-    };
+    }
+};
+
+console.log('test Post.js');
 
 document
-    .querySelector('.post-form')
+    .querySelector('.create-post-button')
     .addEventListener('submit', createPostFormHandler);
 
 document
-    .querySelector('#edit-post')
-    .addEventListener('submit', updatePostHandler);
+    .querySelector('#edit-post-button')
+    .addEventListener('click', updatePostHandler);
 
 document
     .querySelector('#delete-post')
