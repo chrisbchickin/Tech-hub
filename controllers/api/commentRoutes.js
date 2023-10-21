@@ -19,9 +19,9 @@ router.post('/', async (req, res) => {
     });
 
     res.status(200).json(newComment);
-  } catch (err) {
-    res.status(400).json(err);
-    console.log(err);
+  } catch (error) {
+    res.status(400).json(error);
+    console.log(error);
   }
 });
 // update comment

@@ -18,8 +18,7 @@ const commentFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/');
-            alert('beautiful comment!');
+            document.location.replace(`/posts/${post_id}`);
         } else {
             alert('Failed to comment');
         }

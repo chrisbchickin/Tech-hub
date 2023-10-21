@@ -1,139 +1,147 @@
-body {
-    background-color: rgb(3, 19, 72);
+:root {
+  --border-color: black;
+  --padding-amount: 20px;
+  --background-color: #FAF0E6;
+  --text-color: black;
 }
 
+body {
+  background-color: var(--background-color);
+  box-sizing: border-box;
+}
 
 form {
-    width: 40vw;
-    min-width: 300px;
-    height: 70%;
-    border-radius: 20px;
-    padding: 50px;
+  width: fit-content;
+  min-width: 300px;
+  padding: var(--padding-amount);
 }
 
 .line {
-    border-right: 2px solid white;
-    height: 70%;
+  border-right: 2px solid var(--border-color);
+  height: 70%;
 }
 
 .registration {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    height: 100vh;
-    margin-top: 4rem;
-}   
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-top: 4rem;
+}
 
 .grey-text {
-    color: #afb4c1;
+  color: gray;
 }
 
 .white-text {
-    color: white;
+  color: var(--text-color);
 }
+
 .min-width-none {
-    min-width: none;
+  min-width: none;
 }
 
 .display-flex {
-    display: flex;
+  display: flex;
 }
 
 .title {
-    margin-left: 3rem;
+  margin-left: 3rem;
 }
 
 .btn {
-    max-width: 250px;
+  max-width: 250px;
+  background-color: black;
 }
 
 .nav {
-    margin-right: 3rem;
+  margin-right: 3rem;
 }
 
 .borderz {
-    border: 3px red solid;
+  border: 3px var(--border-color) solid;
 }
 
 .nav-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    height: 100px;
-    width: 100vw;
-    min-width: none;
-    border-bottom: 3px white solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  height: 100px;
+  width: 100vw;
+  min-width: none;
+  border-bottom: 3px var(--text-color) solid;
 }
 
 .nav-link {
-    color: white;
+  color: var(--text-color);
 }
 
 .card {
-    display: flex;
-    height: 25%;
-    margin: 10px;
+  display: flex;
+  height: 25%;
+  margin: 10px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-body {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
 
 .single-post {
-    max-width: 800px;
+  max-width: 800px;
 }
 
 .content-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2%;
 }
 
 .comments-containter {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--text-color);
 }
 
 #homepage-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 #cards-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    height: 100%;
-    width: 80%;
-    padding-top: 2%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  height: 100%;
+  width: 80%;
+  padding-top: 2%;
 }
 
-
 #post-container {
-    border: 3px solid red;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 2%;
+  border: 3px var(--border-color) solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2%;
 }
 
 @media (max-width: 850px) {
-    .registration {
-        flex-direction: column;
-        justify-content: center ;
-    }
-    form {
-        padding: 20px;
-        width: fit-content;
-    }
+  .registration {
+    flex-direction: column;
+    justify-content: center;
+  }
+  form {
+    padding: 20px;
+    width: 100%;
+  }
 }

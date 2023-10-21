@@ -17,7 +17,7 @@
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Enter Post Body</label>
-              <textarea class="form-control" id="post-body-input"></textarea>
+              <textarea class="form-control" id="post-text"></textarea>
             </div>
           <button type="submit" class="btn btn-primary create-post-button">Create Post</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -36,6 +36,8 @@
         post.createdAt}}</h6>
       <a class="btn btn-primary" href="/posts/{{post.id}}">View Post</a>
     </div>
+    <div id="edit-post-button"></div>
+    <div id="delete-post"></div>
   </div>
   {{/each}}
   {{!-- <form class="form post-form">
@@ -53,4 +55,7 @@
   </form> --}}
 </div>
 
+{{#if logged_in}}
+<script src="../js/logout.js"></script>
 <script src="../js/Post.js"></script>
+{{/if}}

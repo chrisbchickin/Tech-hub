@@ -20,8 +20,8 @@ const createPostFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
             alert('beautiful post!');
+            document.location.replace('/dashboard');
         } else {
             alert('Failed to post!');
         }
@@ -75,15 +75,22 @@ const delButtonHandler = async (event) => {
         document.location.replace('/dashboard');
         alert('post deleted!')
     } else {
+        console.log(response)
         alert('Failed to delete post!');
     }
 };
+
+const test = (e) => {
+    e.preventDefault();
+    console.log("test");
+}
 
 console.log('test Post.js');
 
 document
     .querySelector('.create-post-button')
-    .addEventListener('submit', createPostFormHandler);
+    .addEventListener('click', createPostFormHandler);
+
 
 document
     .querySelector('#edit-post-button')
